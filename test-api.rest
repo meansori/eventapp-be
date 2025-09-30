@@ -1,0 +1,95 @@
+curl -X POST http://localhost:4000/admin/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "admin1",
+    "password": "password123"
+  }'
+
+###
+curl -X POST http://localhost:4000/admin/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "admin1",
+    "password": "password123"
+  }'
+
+  
+###
+curl -X POST http://localhost:4000/acara \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM" \
+  -d '{
+    "nama_acara": "Workshop React",
+    "deskripsi": "Workshop React untuk pemula",
+    "tanggal_mulai": "2023-06-01 09:00:00",
+    "tanggal_selesai": "2023-06-01 17:00:00",
+    "lokasi": "Jakarta",
+    "status_acara": "scheduled"
+  }'
+
+###
+curl -X GET http://localhost:4000/acara \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X GET http://localhost:4000/acara/1 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X PUT http://localhost:4000/acara/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM" \
+  -d '{
+     "nama_acara": "Workshop React Update",
+    "deskripsi": "Workshop React untuk pemula Update",
+    "tanggal_mulai": "2023-06-01 08:00:00",
+    "tanggal_selesai": "2023-06-01 12:00:00",
+    "lokasi": "Jakarta",
+    "status_acara": "scheduled"
+  }'
+
+###
+curl -X DELETE http://localhost:4000/acara/1 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X POST http://localhost:4000/peserta \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM" \
+  -d '{
+    "nama_peserta": "John Doe",
+    "asal": "Jakarta",
+    "kategori": "Staff"
+  }'
+
+###
+curl -X GET http://localhost:4000/peserta \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X GET "http://localhost:4000/peserta/search?nama=Doe" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X POST http://localhost:4000/absensi \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM" \
+  -d '{
+    "id_acara": 2,
+    "id_peserta": 1,
+    "status_kehadiran": "Hadir"
+  }'
+
+###
+curl -X GET http://localhost:4000/absensi/acara/2 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X GET http://localhost:4000/absensi/statistics/acara/2 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
+curl -X GET http://localhost:4000/absensi/statistics/month/2023/7 \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM"
+
+###
