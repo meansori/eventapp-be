@@ -4,10 +4,7 @@ class Absensi {
   static async create(data) {
     const { id_acara, id_peserta, status_kehadiran } = data;
     try {
-      const [result] = await pool.query(
-        "INSERT INTO Absensi (id_acara, id_peserta, status_kehadiran) VALUES (?, ?, ?)",
-        [id_acara, id_peserta, status_kehadiran]
-      );
+      const [result] = await pool.query("INSERT INTO Absensi (id_acara, id_peserta, status_kehadiran) VALUES (?, ?, ?)", [id_acara, id_peserta, status_kehadiran]);
       return result.insertId;
     } catch (error) {
       // Jika terjadi error karena duplikat (unique constraint)
@@ -25,6 +22,20 @@ class Absensi {
        JOIN Peserta p ON a.id_peserta = p.id_peserta 
        WHERE a.id_acara = ?`,
       [id_acara]
+    );
+    return rows;
+  }
+
+  static async findAll(id) {
+    console.log("model id pes " + id);
+
+    const [rows] = await pool.execute(
+      `SELECT *
+   FROM absensi a
+   JOIN acara ac ON a.id_acara = ac.id_acara
+   WHERE a.id_peserta = ?
+   ORDER BY a.waktu_absen DESC`,
+      [id]
     );
     return rows;
   }

@@ -30,6 +30,27 @@ const getAbsensiByAcara = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const getAllPeserta = async (req, res) => {
+  const { id_peserta } = req.params;
+
+  try {
+    const attendance = await Absensi.findAll(id_peserta);
+    // Format data sesuai kebutuhan
+    const formattedData = attendance.map((att) => ({
+      id_absensi: att.id_absensi,
+      nama_acara: att.nama_acara,
+      tanggal_mulai: att.tanggal_mulai,
+      status_kehadiran: att.status_kehadiran,
+      waktu_absen: att.waktu_absen,
+    }));
+
+    console.log("data peserta", formattedData);
+
+    res.json(formattedData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 const getStatisticsByAcara = async (req, res) => {
   const { id_acara } = req.params;
@@ -58,4 +79,5 @@ module.exports = {
   getAbsensiByAcara,
   getStatisticsByAcara,
   getMonthlyStatistics,
+  getAllPeserta,
 };

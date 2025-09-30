@@ -7,13 +7,38 @@ const createPeserta = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { nama_peserta, asal, kategori } = req.body;
+  const { nama_peserta, asal, kategori, jenis_kelamin, agama } = req.body;
 
   try {
-    const pesertaId = await Peserta.create({ nama_peserta, asal, kategori });
+    const pesertaId = await Peserta.create({ nama_peserta, asal, kategori, jenis_kelamin, agama });
     res.status(201).json({ message: "Peserta berhasil ditambahkan", pesertaId });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+const importParticipants = async (req, res) => {
+  try {
+    const { participants, created_by } = req.body;
+
+    if (!participants || !Array.isArray(participants)) {
+      return res.status(400).json({ message: "Invalid data format" });
+    }
+
+    // Loop insert tiap peserta
+    const createdParticipants = [];
+    for (const p of participants) {
+      const id = await Peserta.create({ ...p, created_by });
+      createdParticipants.push(id);
+    }
+
+    res.status(201).json({
+      message: "Participants imported successfully",
+      count: createdParticipants.length,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -47,10 +72,10 @@ const updatePeserta = async (req, res) => {
   }
 
   const { id } = req.params;
-  const { nama_peserta, asal, kategori } = req.body;
+  const { nama_peserta, asal, kategori, jenis_kelamin, agama } = req.body;
 
   try {
-    const affectedRows = await Peserta.update(id, { nama_peserta, asal, kategori });
+    const affectedRows = await Peserta.update(id, { nama_peserta, asal, kategori, jenis_kelamin, agama });
     if (affectedRows === 0) {
       return res.status(404).json({ message: "Peserta tidak ditemukan" });
     }
@@ -92,4 +117,5 @@ module.exports = {
   updatePeserta,
   deletePeserta,
   searchPeserta,
+  importParticipants,
 };

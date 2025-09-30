@@ -2,12 +2,8 @@ const pool = require("../config/db");
 
 class Peserta {
   static async create(data) {
-    const { nama_peserta, asal, kategori } = data;
-    const [result] = await pool.query("INSERT INTO Peserta (nama_peserta, asal, kategori) VALUES (?, ?, ?)", [
-      nama_peserta,
-      asal,
-      kategori,
-    ]);
+    const { nama_peserta, asal, kategori, jenis_kelamin, agama } = data;
+    const [result] = await pool.query("INSERT INTO Peserta (nama_peserta, asal, kategori,jenis_kelamin,agama) VALUES (?, ?, ?, ?, ?)", [nama_peserta, asal, kategori, jenis_kelamin, agama]);
     return result.insertId;
   }
 
@@ -22,11 +18,15 @@ class Peserta {
   }
 
   static async update(id, data) {
-    const { nama_peserta, asal, kategori } = data;
-    const [result] = await pool.query(
-      "UPDATE Peserta SET nama_peserta = ?, asal = ?, kategori = ? WHERE id_peserta = ?",
-      [nama_peserta, asal, kategori, id]
-    );
+    const { nama_peserta, asal, kategori, jenis_kelamin, agama } = data;
+    const [result] = await pool.query("UPDATE Peserta SET nama_peserta = ?, asal = ?, kategori = ?, jenis_kelamin = ?, agama = ? WHERE id_peserta = ?", [
+      nama_peserta,
+      asal,
+      kategori,
+      jenis_kelamin,
+      agama,
+      id,
+    ]);
     return result.affectedRows;
   }
 
