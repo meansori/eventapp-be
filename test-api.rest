@@ -1,26 +1,26 @@
 curl -X POST http://localhost:4000/admin/register \
   -H "Content-Type: application/json" \
   -d '{
-    "username": "admin1",
-    "password": "password123"
+    "username": "admin2",
+    "password": "admin23"
   }'
 
 ###
 curl -X POST http://localhost:4000/admin/login \
   -H "Content-Type: application/json" \
   -d '{
-    "username": "admin1",
-    "password": "password123"
+    "username": "admin2",
+    "password": "admin23"
   }'
 
   
 ###
 curl -X POST http://localhost:4000/acara \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE3NTkxNjcxMTAsImV4cCI6MTc1OTE3MDcxMH0.RVKEvwu5u1W-GcH3LpJJRR54xKGS67GZavpkasVOGLM" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJhZG1pbjIiLCJpYXQiOjE3NTkzMjY4ODksImV4cCI6MTc1OTQxMzI4OX0.qUy3c71YnYaJ-9ceoG24eKQq5uqNvTFSfkk7qLqEHMs" \
   -d '{
-    "nama_acara": "Workshop React",
-    "deskripsi": "Workshop React untuk pemula",
+    "nama_acara": "Test data",
+    "deskripsi": "Test data untuk pemula",
     "tanggal_mulai": "2023-06-01 09:00:00",
     "tanggal_selesai": "2023-06-01 17:00:00",
     "lokasi": "Jakarta",
