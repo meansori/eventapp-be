@@ -25,6 +25,8 @@ app.get("/", (req, res) => {
   res.json({ message: "API is running" });
 });
 
+console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
